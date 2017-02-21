@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title></title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+
+<link rel="stylesheet" href="css/main.css">
+
+<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script>window.html5 || document.write('<script src="js/vendor/html5shiv.js"><\/script>')</script>
+    <![endif]-->
+</head>
+<body>
+<!--[if lt IE 7]>
+    <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->    
+
+    <div class="main-container">     
+
+        <ul class="title_list accelerated_layer">
+            <li class="first">
+                <a data-id="#element_1" href="#" class="selected">
+                    <h4>Element 1</h4>
+                    <p>Element 1 short description </p>
+                </a>
+            </li>
+            <li>
+                <a data-id="#element_2" href="#">
+                    <h4>Element 2</h4>
+                    <p>Element 2 short description </p>
+                </a>
+            </li>
+            <li>
+                <a data-id="#element_3" href="#">
+                    <h4>Element 3</h4>
+                    <p>Element 3 short description </p>
+                </a>
+            </li>                                
+        </ul>   
+
+        <ul class="detailed_list accelerated_layer">
+            <li id="element_1" class="accelerated_layer first">
+
+                <h2>Element 1 detail page</h2>
+                <p>Etiam luctus dolor sit amet, consectetur adipiscing elit. Morbi fringilla sem ac lacus facilisis ac lobortis arcu sodales. Nullam venenatis elit ut augue imperdiet sed facilisis mauris cursus. Nulla facilisi. Aliquam aliquet dui vitae ligula rutrum fermentum. Nunc interdum, lectus sed lobortis tempus, neque sapien venenatis velit, vehicula euismod tortor mauris nec dolor.
+                </p>
+                <p> Morbi rutrum tincidunt ante vel rhoncus. Phasellus facilisis lacus id ipsum convallis hendrerit. Proin facilisis aliquam purus, et pharetra urna fringilla et. Vestibulum nibh velit, volutpat eget sagittis vel, rhoncus quis ligula. Etiam luctus molestie vehicula. Etiam elit mauris, bibendum id molestie consectetur, egestas vel nisl. Vivamus semper leo at ante aliquet convallis. Duis auctor suscipit est id laoreet. Integer neque tellus, sodales sed ornare eu, molestie ac felis 
+                </p>
+            </li>
+            <li id="element_2" class="accelerated_layer">
+                <h2>Element 2 detail page</h2>
+                <p>Duis auctor dolor sit amet, consectetur adipiscing elit. Morbi fringilla sem ac lacus facilisis ac lobortis arcu sodales. Nullam venenatis elit ut augue imperdiet sed facilisis mauris cursus.
+                </p>
+                <p>
+                Nulla facilisi. Aliquam aliquet dui vitae ligula rutrum fermentum. Nunc interdum, lectus sed lobortis tempus, neque sapien venenatis velit, vehicula euismod tortor mauris nec dolor.
+                </p>
+                <p> Morbi rutrum tincidunt ante vel rhoncus. Phasellus facilisis lacus id ipsum convallis hendrerit. Proin facilisis aliquam purus, et pharetra urna fringilla et. Vestibulum nibh velit, volutpat eget sagittis vel, rhoncus quis ligula. Etiam luctus molestie vehicula. Etiam elit mauris, bibendum id molestie consectetur, egestas vel nisl. Vivamus semper leo at ante aliquet convallis. Duis auctor suscipit est id laoreet. Integer neque tellus, sodales sed ornare eu, molestie ac felis 
+                </p>
+            </li>
+            <li id="element_3" class="accelerated_layer">
+                <h2>Element 3 detail page</h2>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fringilla sem ac lacus facilisis ac lobortis arcu sodales. 
+                </p>
+                <p>
+                    Nullam venenatis elit ut augue imperdiet sed facilisis mauris cursus.
+                </p>
+                <p>
+                    Nulla facilisi. Aliquam aliquet dui vitae ligula rutrum fermentum. Nunc interdum, lectus sed lobortis tempus, neque sapien venenatis velit, vehicula euismod tortor mauris nec dolor.
+                </p>
+            </li>
+
+        </ul>
+
+    </div> 
+
+    <div class="top_nav"> 
+        <a id="home_button" href="#"></a>
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script>
+      $(function() {        
+
+        $('.title_list li a').click(function(event){
+            event.preventDefault();
+            event.stopPropagation();
+
+            //mark clicked element as selected
+            $('.title_list li a').removeClass('selected');            
+            $(this).addClass('selected');
+
+            //when an element was clicked
+            //we want the list of elements to leave the view port
+            //and the details list to come in
+            $('.title_list').removeClass('in_focus').addClass('out_left');
+            $('.detailed_list').removeClass('out_right').addClass('in_focus');
+
+            //we only want to show the details of the clicked element               
+            $('.detailed_list li').removeClass('in_focus').addClass('out_right');
+            // show the detail page of the seleceted
+            var element = $(this).data("id");            
+            $(element).removeClass('out_right').addClass('in_focus'); 
+        });
+
+        $('#home_button').click(function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+
+            $('.detailed_list').removeClass('in_focus').addClass('out_right');          
+            $('.title_list').removeClass('out_left').addClass('in_focus');
+
+        });
+      });
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
