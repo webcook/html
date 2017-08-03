@@ -1,0 +1,8 @@
+This is a beta version!!!
+
+- When the plugin needs to create severall 1000 new thumbnails, it can happen, that it time outs.
+Just execute it again. It won't recreate thumbnails which already exist.
+
+- It doesn't create thumbnails of movies yet. Actually that's a bit complicated to to, since piwigo (for what ever reason) expects movies not to be in the pwg_high dir, but in the websized dir.
+
+- adjust in synchronlizeLocaldirectory.php the variables "sync_source_dir" and "piwigo_gallery_dir"
